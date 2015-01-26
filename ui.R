@@ -27,15 +27,15 @@ shinyUI(
         min     = 1972,
         max     = 2013,
         value   = 2010,
-        step    = 1,
-        format  = "####")
+        sep		= "",
+        step    = 1)
     ),
     
     # The output goes in mainPanel(). Plot the bargraph based on the inputs.
     mainPanel(
       plotOutput("plot"),
       # Include sourcing information for the data
-      HTML("<p><em>Data source: United States Census Bureau Mean Household Income Received by Each Fifth and Top 5 Percent, Unadjusted for Inflation</em>"),
+      HTML("<p><em>Data source: United States Census Bureau Mean Household Income Received by Each Fifth and Top 5 Percent, unadjusted for inflation</em>"),
       br(),
       em(a("Census Bureau Website", href="https://www.census.gov/hhes/www/income/data/historical/household/")))      
   )

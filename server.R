@@ -4,19 +4,19 @@ library(ggplot2)
 library(scales)
 
 # Load all support data and convert column names in each dataframe
-lowest_fifth <- read.csv("/srv/shiny-server/data/lowest_fifth.csv", header=TRUE)
+lowest_fifth <- read.csv("/srv/shiny-server/Income_Race/Data/lowest_fifth.csv", header=TRUE)
 names(lowest_fifth) <- c("Year", "White", "Black", "Hispanic", "Asian", "All Races")
-second_fifth <- read.csv("/srv/shiny-server/data/second_fifth.csv", header=TRUE)
+second_fifth <- read.csv("/srv/shiny-server/Income_Race/Data/second_fifth.csv", header=TRUE)
 names(second_fifth) <- c("Year", "White", "Black", "Hispanic", "Asian", "All Races")
-third_fifth <- read.csv("/srv/shiny-server/data/third_fifth.csv", header=TRUE)
+third_fifth <- read.csv("/srv/shiny-server/Income_Race/Data/third_fifth.csv", header=TRUE)
 names(third_fifth) <- c("Year", "White", "Black", "Hispanic", "Asian", "All Races")
-fourth_fifth <- read.csv("/srv/shiny-server/data/fourth_fifth.csv", header=TRUE)
+fourth_fifth <- read.csv("/srv/shiny-server/Income_Race/Data/fourth_fifth.csv", header=TRUE)
 names(fourth_fifth) <- c("Year", "White", "Black", "Hispanic", "Asian", "All Races")
-highest_fifth <- read.csv("/srv/shiny-server/data/highest_fifth.csv", header=TRUE)
+highest_fifth <- read.csv("/srv/shiny-server/Income_Race/Data/highest_fifth.csv", header=TRUE)
 names(highest_fifth) <- c("Year", "White", "Black", "Hispanic", "Asian", "All Races")
-top_5_percent <- read.csv("/srv/shiny-server/data/top_5_percent.csv", header=TRUE)
+top_5_percent <- read.csv("/srv/shiny-server/Income_Race/Data/top_5_percent.csv", header=TRUE)
 names(top_5_percent) <- c("Year", "White", "Black", "Hispanic", "Asian", "All Races")
-average <- read.csv("/srv/shiny-server/data/average.csv", header=TRUE)
+average <- read.csv("/srv/shiny-server/Income_Race/Data/average.csv", header=TRUE)
 names(average) <- c("Year", "White", "Black", "Hispanic", "Asian", "All Races")
 
 shinyServer(
@@ -72,9 +72,14 @@ shinyServer(
     # Create a dataframe of reactive race and income data from race(s) and income
     df <- reactive({
       df <- data.frame(Race = factor(race()), Income = income())
-      return(df)
+      #          if (is.null(Income)) {
+      #            df <- NULL
+      #          } else {
+      #            df <- df
+      #          }
+      #          return(df)
     })
-       
+    
     # Create a reactive barplot from all the inputs
     output$plot <- renderPlot({
       newplot <- ggplot(data=df(), aes(x=Race, y=Income, fill=Race, label=comma(Income))) + geom_bar(stat="identity", width=.75)
@@ -84,3 +89,4 @@ shinyServer(
     })
   }
 )
+
