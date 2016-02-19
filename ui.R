@@ -32,7 +32,7 @@ shinyUI(fluidPage(
         min     = 1972,
         max     = 2013,
         value   = 2010,
-#        sep		= "",
+        sep		  = "",
         step    = 1)
     ),
     

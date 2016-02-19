@@ -1,0 +1,9 @@
+/* Make text green for any element with class 'incomeHigh' */
+.incomeHigh {
+    color: #04B404;
+}
+
+/* Make text red for any element with class 'incomeLow' */
+.incomeLow {
+    color: #FF0000;   
+}
