@@ -1,8 +1,8 @@
 name: Shiny_Income_Race
 account: vineetabraham
 server: shinyapps.io
-bundleId: 360367
+bundleId: 375967
 url: https://vineetabraham.shinyapps.io/Shiny_Income_Race/
-when: 1453969748.44661
+when: 1455871020.58433
 asMultiple: FALSE
 asStatic: FALSE

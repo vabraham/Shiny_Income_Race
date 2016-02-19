@@ -1,6 +1,6 @@
 ## US Average Income by Race and Year - R Shiny Application
 
-Below is a link to an R Shiny application for US average income by race and year from 1972 to 2012. The data was acquired from the US Census Bureau website: https://www.census.gov/hhes/www/income/data/historical/household/
+Below is a link to an R Shiny application for US average income by race and year from 1972 to 2013. The data was acquired from the US Census Bureau website: https://www.census.gov/hhes/www/income/data/historical/household/
 
 The application can be found below:
 https://vineetabraham.shinyapps.io/Shiny_Income_Race/
