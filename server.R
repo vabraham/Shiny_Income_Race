@@ -4,30 +4,30 @@ library(ggplot2)
 library(scales)
 
 # Load all support data and convert column names in each dataframe
-lowest_fifth <- read.csv("Data/lowest_fifth.csv", header=TRUE)
+lowest_fifth <- read.csv("data/lowest_fifth.csv", header=TRUE)
 names(lowest_fifth) <- c("Year", "White, NH", "White", "Black", "Hispanic", "Asian", "All Races")
-second_fifth <- read.csv("Data/second_fifth.csv", header=TRUE)
+second_fifth <- read.csv("data/second_fifth.csv", header=TRUE)
 names(second_fifth) <- c("Year", "White, NH", "White", "Black", "Hispanic", "Asian", "All Races")
-third_fifth <- read.csv("Data/third_fifth.csv", header=TRUE)
+third_fifth <- read.csv("data/third_fifth.csv", header=TRUE)
 names(third_fifth) <- c("Year", "White, NH", "White", "Black", "Hispanic", "Asian", "All Races")
-fourth_fifth <- read.csv("Data/fourth_fifth.csv", header=TRUE)
+fourth_fifth <- read.csv("data/fourth_fifth.csv", header=TRUE)
 names(fourth_fifth) <- c("Year", "White, NH", "White", "Black", "Hispanic", "Asian", "All Races")
-highest_fifth <- read.csv("Data/highest_fifth.csv", header=TRUE)
+highest_fifth <- read.csv("data/highest_fifth.csv", header=TRUE)
 names(highest_fifth) <- c("Year", "White, NH", "White", "Black", "Hispanic", "Asian", "All Races")
-top_5_percent <- read.csv("Data/top_5_percent.csv", header=TRUE)
+top_5_percent <- read.csv("data/top_5_percent.csv", header=TRUE)
 names(top_5_percent) <- c("Year", "White, NH", "White", "Black", "Hispanic", "Asian", "All Races")
-average <- read.csv("Data/average.csv", header=TRUE)
+average <- read.csv("data/average.csv", header=TRUE)
 names(average) <- c("Year", "White, NH", "White", "Black", "Hispanic", "Asian", "All Races")
 
 shinyServer(
   # Function takes input from ui.R and returns output objects.
   function(input, output) {
-    
+
     # Get income group from input list.
     income_group <- reactive({
-      input$income_group  
+      input$income_group
     })
-    
+
     # Get appropriate dataset/income category based on income group
     income_cat <- reactive({
       if (input$income_group == "Bottom 20% (1-20%)") {
@@ -45,17 +45,17 @@ shinyServer(
       else if (input$income_group == "Average") {
         income_cat <- average }
     })
-    
+
     # Get year from input list.
     year <- reactive({
       input$year
     })
-    
+
     # Get race(s) from input list.
     race <- reactive({
-      input$race  
+      input$race
     })
-    
+
     # Get income vector using race(s), year, and income category
     income <- reactive({
       r <- race()
@@ -68,12 +68,12 @@ shinyServer(
       }
       return(income)
     })
-    
+
     # Create a dataframe of reactive race and income data from race(s) and income
     df <- reactive({
       df <- data.frame(Race = factor(race()), Income = income())
     })
-    
+
     # Create a reactive barplot from all the inputs
     output$plot <- renderPlot({
       newplot <- ggplot(data=df(), aes(x=Race, y=Income, fill=Race, label=comma(Income))) + geom_bar(stat="identity", width=.80)

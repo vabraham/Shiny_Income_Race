@@ -6,4 +6,4 @@ The application can be found below:
 https://vineetabraham.shinyapps.io/Shiny_Income_Race/
 
 Below are directions for hosting Shiny apps on Amazon EC2. Note that for cost reasons, the above app is no longer hosted on EC2.
-http://www.numbrcrunch.com/blog/how-to-host-your-shiny-app-on-amazon-ec2-for-mac-osx
+https://www.r-bloggers.com/how-to-host-your-shiny-app-on-amazon-ec2-for-mac-osx/
